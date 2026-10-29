@@ -1,0 +1,91 @@
+/* Colores en un solo lugar: cambia estos valores para dar otro look */
+:root {
+  --fondo: #e8ecef;
+  --calculadora: #1d2b36;
+  --pantalla: #14202a;
+  --texto: #f2f5f7;
+  --texto-suave: #8fa3b3;
+  --tecla: #2a3c4a;
+  --tecla-auxiliar: #3b5163;
+  --operador: #2f8fb5;
+  --igual: #f0b429;
+  --igual-texto: #1d2b36;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--fondo);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.calculadora {
+  width: min(92vw, 340px);
+  padding: 16px;
+  border-radius: 24px;
+  background: var(--calculadora);
+  box-shadow: 0 20px 40px rgba(20, 32, 42, 0.25);
+}
+
+.pantalla {
+  min-height: 96px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  border-radius: 14px;
+  background: var(--pantalla);
+  color: var(--texto);
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.operacion {
+  min-height: 1.2em;
+  font-size: 0.95rem;
+  color: var(--texto-suave);
+}
+
+.resultado {
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1.2;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.teclas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.tecla {
+  padding: 18px 0;
+  border: 0;
+  border-radius: 14px;
+  background: var(--tecla);
+  color: var(--texto);
+  font-size: 1.3rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.08s, filter 0.15s;
+}
+
+.tecla:hover { filter: brightness(1.15); }
+.tecla:active { transform: scale(0.95); }
+.tecla:focus-visible { outline: 3px solid var(--igual); outline-offset: 2px; }
+
+.tecla.auxiliar { background: var(--tecla-auxiliar); }
+.tecla.operador { background: var(--operador); }
+.tecla.operador.activo { outline: 3px solid var(--texto); outline-offset: -3px; }
+.tecla.igual { background: var(--igual); color: var(--igual-texto); font-weight: 700; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tecla { transition: none; }
+}
